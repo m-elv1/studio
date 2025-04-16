@@ -1,1 +1,2 @@
-// Flows will be imported for their side effects in this file.
+import '@/ai/flows/suggest-sales-strategy.ts';
+import '@/ai/flows/customer-sentiment-analysis.ts';
