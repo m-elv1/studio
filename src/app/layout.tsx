@@ -40,7 +40,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <SidebarProvider>
-          <div className="flex h-screen">
+          <div className="flex h-screen bg-gray-200">
             {sidebarOpen ? (
               <Sidebar className="bg-gray-800 text-white w-64 flex-shrink-0">
                 <SidebarTrigger onClick={toggleSidebar} />
