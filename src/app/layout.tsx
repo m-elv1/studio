@@ -83,7 +83,9 @@ export default function RootLayout({
                 </SidebarContent>
               </Sidebar>
             ) : (
-              <Button onClick={toggleSidebar}>Re-open Menu</Button>
+                <div className="fixed top-0 left-0 p-4 z-50">
+                    <Button onClick={toggleSidebar}>Re-open Menu</Button>
+                </div>
             )}
             <div className="flex-1 p-4">{children}</div>
           </div>
@@ -92,3 +94,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+    
