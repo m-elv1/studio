@@ -25,9 +25,14 @@ const MainNav = ({className, ...props}: React.HTMLAttributes<HTMLElement>) => {
       >
         Customer Sentiment
       </Link>
+      <Link
+        href="/customer-payment-history-analysis"
+        className="text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary" aria-current={props.pathname === '/customer-payment-history-analysis' ? 'page' : undefined}
+      >
+        Customer Payment
+      </Link>
     </nav>
   );
 };
 
 export {MainNav};
-
