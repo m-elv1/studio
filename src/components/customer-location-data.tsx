@@ -53,12 +53,12 @@ export function CustomerLocationData() {
   }, []);
 
   return (
-    
-      
-        
-          
-        
-      
-    
+    <div>
+      <div>
+        <div>
+          <div ref={mapRef} style={{height: '400px', width: '100%'}} />
+        </div>
+      </div>
+    </div>
   );
 }
