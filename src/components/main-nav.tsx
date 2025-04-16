@@ -3,7 +3,7 @@ import {cn} from '@/lib/utils';
 
 const MainNav = ({className, pathname, ...props}: {className?: string, pathname: string} & React.HTMLAttributes<HTMLElement>) => {
   return (
-    <nav className={cn('flex items-center space-x-4 lg:space-x-6 p-4 bg-secondary rounded-md shadow-sm', className)} {...props}>
+    <nav className={cn('flex flex-col items-start space-y-2 p-4 bg-secondary rounded-md shadow-sm', className)} {...props}>
       <Link href="/" className="text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary" aria-current={pathname === '/' ? 'page' : undefined}>
         Dashboard
       </Link>
@@ -42,3 +42,5 @@ const MainNav = ({className, pathname, ...props}: {className?: string, pathname:
 };
 
 export {MainNav};
+
+    
