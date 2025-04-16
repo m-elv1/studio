@@ -4,6 +4,7 @@ import './globals.css';
 import {MainNav} from '@/components/main-nav';
 import {Sidebar, SidebarContent, SidebarTrigger, SidebarProvider} from '@/components/ui/sidebar';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -22,11 +23,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  pathname,
 }: {
   children: React.ReactNode;
-  pathname: string;
 }) {
+  const pathname = usePathname() || '/';
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
