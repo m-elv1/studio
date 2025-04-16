@@ -44,36 +44,36 @@ export default function RootLayout({
                 <SidebarTrigger onClick={toggleSidebar} />
                 <SidebarContent>
                   <nav className="flex flex-col items-start space-y-2 p-4">
-                    <Link href="/" className="text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary" aria-current={'/' === '/' ? 'page' : undefined}>
+                    <Link href="/" className="text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary text-gray-200" aria-current={'/' === '/' ? 'page' : undefined}>
                       Dashboard
                     </Link>
-                    <Link href="/team-profiles" className="text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary" aria-current={'/team-profiles' === '/team-profiles' ? 'page' : undefined}>
+                    <Link href="/team-profiles" className="text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary text-gray-200" aria-current={'/team-profiles' === '/team-profiles' ? 'page' : undefined}>
                       Team Profiles
                     </Link>
-                    <Link href="/activity-log" className="text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary" aria-current={'/activity-log' === '/activity-log' ? 'page' : undefined}>
+                    <Link href="/activity-log" className="text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary text-gray-200" aria-current={'/activity-log' === '/activity-log' ? 'page' : undefined}>
                       Activity Log
                     </Link>
                     <Link
                       href="/sales-strategy-suggestion"
-                      className="text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary" aria-current={'/sales-strategy-suggestion' === '/sales-strategy-suggestion' ? 'page' : undefined}
+                      className="text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary text-gray-200" aria-current={'/sales-strategy-suggestion' === '/sales-strategy-suggestion' ? 'page' : undefined}
                     >
                       Sales Strategy
                     </Link>
                     <Link
                       href="/customer-sentiment-analysis"
-                      className="text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary" aria-current={'/customer-sentiment-analysis' === '/customer-sentiment-analysis' ? 'page' : undefined}
+                      className="text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary text-gray-200" aria-current={'/customer-sentiment-analysis' === '/customer-sentiment-analysis' ? 'page' : undefined}
                     >
                       Customer Sentiment
                     </Link>
                     <Link
                       href="/customer-payment-history-analysis"
-                      className="text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary" aria-current={'/customer-payment-history-analysis' === '/customer-payment-history-analysis' ? 'page' : undefined}
+                      className="text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary text-gray-200" aria-current={'/customer-payment-history-analysis' === '/customer-payment-history-analysis' ? 'page' : undefined}
                     >
                       Customer Payment
                     </Link>
                      <Link
                       href="/customer-location-data"
-                      className="text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary" aria-current={'/customer-location-data' === '/customer-location-data' ? 'page' : undefined}
+                      className="text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary text-gray-200" aria-current={'/customer-location-data' === '/customer-location-data' ? 'page' : undefined}
                     >
                       Customer Location
                     </Link>
@@ -81,7 +81,7 @@ export default function RootLayout({
                 </SidebarContent>
               </Sidebar>
             ) : (
-              <Button onClick={toggleSidebar}>
+              <Button onClick={toggleSidebar} className="bg-gray-700 text-white hover:bg-gray-600">
                 Open
               </Button>
             )}
