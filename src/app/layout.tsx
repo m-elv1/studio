@@ -7,6 +7,7 @@ import {Sidebar, SidebarContent, SidebarTrigger, SidebarProvider} from '@/compon
 import Link from 'next/link';
 import {useState} from 'react';
 import {Button} from '@/components/ui/button';
+import {usePathname} from 'next/navigation';
 
 const geistSans = Geist({
   subsets: ['latin'],
@@ -18,17 +19,13 @@ const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
 });
 
-// export const metadata: Metadata = {
-//   title: 'TradeFlow',
-//   description: 'Sales Team Management Application',
-// };
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const pathname = usePathname();
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -36,44 +33,44 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-900 text-white`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}>
         <SidebarProvider>
           <div className="flex h-screen">
             {sidebarOpen ? (
-              <Sidebar className="bg-gray-800 text-white w-64 flex-shrink-0">
+              <Sidebar className="bg-secondary text-foreground w-64 flex-shrink-0 border-r border-border">
                 <SidebarTrigger onClick={toggleSidebar} />
                 <SidebarContent>
                   <nav className="flex flex-col items-start space-y-2 p-4">
-                    <Link href="/" className="text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary text-gray-200" aria-current={'/' === '/' ? 'page' : undefined}>
+                    <Link href="/" className={`text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary ${pathname === '/' ? 'text-primary' : 'text-black'}`} aria-current={'/' === '/' ? 'page' : undefined}>
                       Dashboard
                     </Link>
-                    <Link href="/team-profiles" className="text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary text-gray-200" aria-current={'/team-profiles' === '/team-profiles' ? 'page' : undefined}>
+                    <Link href="/team-profiles" className={`text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary ${pathname === '/team-profiles' ? 'text-primary' : 'text-black'}`} aria-current={'/team-profiles' === '/team-profiles' ? 'page' : undefined}>
                       Team Profiles
                     </Link>
-                    <Link href="/activity-log" className="text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary text-gray-200" aria-current={'/activity-log' === '/activity-log' ? 'page' : undefined}>
+                    <Link href="/activity-log" className={`text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary ${pathname === '/activity-log' ? 'text-primary' : 'text-black'}`} aria-current={'/activity-log' === '/activity-log' ? 'page' : undefined}>
                       Activity Log
                     </Link>
                     <Link
                       href="/sales-strategy-suggestion"
-                      className="text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary text-gray-200" aria-current={'/sales-strategy-suggestion' === '/sales-strategy-suggestion' ? 'page' : undefined}
+                      className={`text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary ${pathname === '/sales-strategy-suggestion' ? 'text-primary' : 'text-black'}`} aria-current={'/sales-strategy-suggestion' === '/sales-strategy-suggestion' ? 'page' : undefined}
                     >
                       Sales Strategy
                     </Link>
                     <Link
                       href="/customer-sentiment-analysis"
-                      className="text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary text-gray-200" aria-current={'/customer-sentiment-analysis' === '/customer-sentiment-analysis' ? 'page' : undefined}
+                      className={`text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary ${pathname === '/customer-sentiment-analysis' ? 'text-primary' : 'text-black'}`} aria-current={'/customer-sentiment-analysis' === '/customer-sentiment-analysis' ? 'page' : undefined}
                     >
                       Customer Sentiment
                     </Link>
                     <Link
                       href="/customer-payment-history-analysis"
-                      className="text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary text-gray-200" aria-current={'/customer-payment-history-analysis' === '/customer-payment-history-analysis' ? 'page' : undefined}
+                      className={`text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary ${pathname === '/customer-payment-history-analysis' ? 'text-primary' : 'text-black'}`} aria-current={'/customer-payment-history-analysis' === '/customer-payment-history-analysis' ? 'page' : undefined}
                     >
                       Customer Payment
                     </Link>
                      <Link
                       href="/customer-location-data"
-                      className="text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary text-gray-200" aria-current={'/customer-location-data' === '/customer-location-data' ? 'page' : undefined}
+                      className={`text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary ${pathname === '/customer-location-data' ? 'text-primary' : 'text-black'}`} aria-current={'/customer-location-data' === '/customer-location-data' ? 'page' : undefined}
                     >
                       Customer Location
                     </Link>
