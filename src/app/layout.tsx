@@ -38,12 +38,12 @@ export default function RootLayout({
         <SidebarProvider>
           <div className="flex h-screen">
             {!sidebarOpen ? (
-               <Button onClick={toggleSidebar} className="bg-gray-700 text-white hover:bg-gray-600">
+               <Button onClick={() => setSidebarOpen(true)} className="bg-secondary text-foreground hover:bg-gray-600">
                 <PanelLeft />
               </Button>
             ) : (
               <Sidebar className="bg-secondary text-foreground w-64 flex-shrink-0 border-r border-border">
-                <SidebarTrigger onClick={toggleSidebar} />
+                <SidebarTrigger onClick={() => setSidebarOpen(false)} />
                 <SidebarContent>
                   <nav className="flex flex-col items-start space-y-2 p-4">
                     <Link href="/" className={`text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary ${pathname === '/' ? 'text-primary' : 'text-black'}`} aria-current={'/' === '/' ? 'page' : undefined}>
