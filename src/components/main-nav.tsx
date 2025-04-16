@@ -42,5 +42,3 @@ const MainNav = ({className, pathname, ...props}: {className?: string, pathname:
 };
 
 export {MainNav};
-
-    
