@@ -1,3 +1,5 @@
+'use client';
+
 import {Calendar} from '@/components/ui/calendar';
 import {getSalesActivities, SalesActivity, getAllSalesTeamMembers} from '@/services/sales-data';
 import {Button} from '@/components/ui/button';
