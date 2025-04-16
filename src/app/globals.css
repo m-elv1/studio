@@ -9,8 +9,8 @@ body {
 
 @layer base {
   :root {
-    --background: 220 18% 13%; /* Dark Gray/Navy */
-    --foreground: 220 10% 39%;
+    --background: 222 26% 10%; /* Dark Gray/Navy */
+    --foreground: 0 0% 100%;
     --card: 0 0% 100%; /* White */
     --card-foreground: 222.2 47.4% 11.2%;
     --popover: 0 0% 100%;
@@ -88,4 +88,3 @@ body {
     @apply bg-background text-foreground;
   }
 }
-

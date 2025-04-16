@@ -5,10 +5,11 @@ import {Geist, Geist_Mono} from 'next/font/google';
 import './globals.css';
 import {Sidebar, SidebarContent, SidebarTrigger, SidebarProvider} from '@/components/ui/sidebar';
 import Link from 'next/link';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {Button} from '@/components/ui/button';
 import {usePathname} from 'next/navigation';
-import {PanelLeft} from 'lucide-react';
+import {PanelLeft, Home, User, List, BarChart2, MessageSquare, CreditCard, MapPin} from 'lucide-react';
+import {cn} from '@/lib/utils';
 
 const geistSans = Geist({
   subsets: ['latin'],
@@ -27,6 +28,34 @@ export default function RootLayout({
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const pathname = usePathname();
+    const [currentTime, setCurrentTime] = useState(new Date());
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setCurrentTime(new Date());
+        }, 1000);
+
+        return () => clearInterval(intervalId);
+    }, []);
+
+    const formatDate = (date: Date) => {
+        const options: Intl.DateTimeFormatOptions = {
+            weekday: 'long',
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric',
+        };
+        return date.toLocaleDateString('en-US', options);
+    };
+
+    const formatTime = (date: Date) => {
+        let hours = date.getHours();
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        return `${hours}:${minutes} ${ampm}`;
+    };
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -38,46 +67,62 @@ export default function RootLayout({
         <SidebarProvider>
           <div className="flex h-screen">
             {!sidebarOpen ? (
-               <Button onClick={() => setSidebarOpen(true)} className="bg-secondary text-foreground hover:bg-gray-600">
+               <Button onClick={() => setSidebarOpen(true)} className="bg-gray-700 text-white hover:bg-gray-600">
                 <PanelLeft />
               </Button>
             ) : (
-              <Sidebar className="bg-secondary text-foreground w-64 flex-shrink-0 border-r border-border">
+              <Sidebar className="bg-gray-800 text-white w-64 flex-shrink-0 border-r border-gray-700">
                 <SidebarTrigger onClick={() => setSidebarOpen(false)} />
                 <SidebarContent>
+                   <div className="flex flex-col items-start space-y-2 p-4">
+                        <div className="text-2xl font-bold mb-2">
+                            {formatTime(currentTime)}
+                        </div>
+                        <div className="text-sm">
+                            {formatDate(currentTime)}
+                        </div>
+                        <Separator className="my-2 bg-gray-700" />
+                    </div>
                   <nav className="flex flex-col items-start space-y-2 p-4">
-                    <Link href="/" className={`text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary ${pathname === '/' ? 'text-primary' : 'text-black'}`} aria-current={'/' === '/' ? 'page' : undefined}>
-                      Dashboard
+                    <Link href="/" className={cn("flex items-center space-x-2 py-2 hover:text-gray-300", pathname === '/' ? 'text-blue-500' : 'text-white')}>
+                      <Home className="h-4 w-4" />
+                      <span>Dashboard</span>
                     </Link>
-                    <Link href="/team-profiles" className={`text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary ${pathname === '/team-profiles' ? 'text-primary' : 'text-black'}`} aria-current={'/team-profiles' === '/team-profiles' ? 'page' : undefined}>
-                      Team Profiles
+                    <Link href="/team-profiles" className={cn("flex items-center space-x-2 py-2 hover:text-gray-300", pathname === '/team-profiles' ? 'text-blue-500' : 'text-white')}>
+                      <User className="h-4 w-4" />
+                      <span>Team Profiles</span>
                     </Link>
-                    <Link href="/activity-log" className={`text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary ${pathname === '/activity-log' ? 'text-primary' : 'text-black'}`} aria-current={'/activity-log' === '/activity-log' ? 'page' : undefined}>
-                      Activity Log
+                    <Link href="/activity-log" className={cn("flex items-center space-x-2 py-2 hover:text-gray-300", pathname === '/activity-log' ? 'text-blue-500' : 'text-white')}>
+                      <List className="h-4 w-4" />
+                      <span>Activity Log</span>
                     </Link>
                     <Link
                       href="/sales-strategy-suggestion"
-                      className={`text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary ${pathname === '/sales-strategy-suggestion' ? 'text-primary' : 'text-black'}`} aria-current={'/sales-strategy-suggestion' === '/sales-strategy-suggestion' ? 'page' : undefined}
+                      className={cn("flex items-center space-x-2 py-2 hover:text-gray-300", pathname === '/sales-strategy-suggestion' ? 'text-blue-500' : 'text-white')}
                     >
-                      Sales Strategy
+                      <BarChart2 className="h-4 w-4" />
+                      <span>Sales Strategy</span>
                     </Link>
                     <Link
                       href="/customer-sentiment-analysis"
-                      className={`text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary ${pathname === '/customer-sentiment-analysis' ? 'text-primary' : 'text-black'}`} aria-current={'/customer-sentiment-analysis' === '/customer-sentiment-analysis' ? 'page' : undefined}
+                      className={cn("flex items-center space-x-2 py-2 hover:text-gray-300", pathname === '/customer-sentiment-analysis' ? 'text-blue-500' : 'text-white')}
                     >
-                      Customer Sentiment
+                      <MessageSquare className="h-4 w-4" />
+                      <span>Customer Sentiment</span>
                     </Link>
                     <Link
                       href="/customer-payment-history-analysis"
-                      className={`text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary ${pathname === '/customer-payment-history-analysis' ? 'text-primary' : 'text-black'}`} aria-current={'/customer-payment-history-analysis' === '/customer-payment-history-analysis' ? 'page' : undefined}
+                      className={cn("flex items-center space-x-2 py-2 hover:text-gray-300", pathname === '/customer-payment-history-analysis' ? 'text-blue-500' : 'text-white')}
                     >
-                      Customer Payment
+                      <CreditCard className="h-4 w-4" />
+                      <span>Customer Payment</span>
                     </Link>
                      <Link
                       href="/customer-location-data"
-                      className={`text-sm font-medium transition-colors hover:text-primary data-[active=true]:text-primary ${pathname === '/customer-location-data' ? 'text-primary' : 'text-black'}`} aria-current={'/customer-location-data' === '/customer-location-data' ? 'page' : undefined}
+                      className={cn("flex items-center space-x-2 py-2 hover:text-gray-300", pathname === '/customer-location-data' ? 'text-blue-500' : 'text-white')}
                     >
-                      Customer Location
+                      <MapPin className="h-4 w-4" />
+                      <span>Customer Location</span>
                     </Link>
                   </nav>
                 </SidebarContent>
@@ -91,4 +136,10 @@ export default function RootLayout({
       </body>
     </html>
   );
+}
+
+function Separator({ className }: { className?: string }) {
+    return (
+        <div className={`border-b border-gray-700 w-full ${className}`} />
+    );
 }
