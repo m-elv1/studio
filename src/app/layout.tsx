@@ -8,6 +8,7 @@ import Link from 'next/link';
 import {useState} from 'react';
 import {Button} from '@/components/ui/button';
 import {usePathname} from 'next/navigation';
+import {PanelLeft} from 'lucide-react';
 
 const geistSans = Geist({
   subsets: ['latin'],
@@ -79,7 +80,7 @@ export default function RootLayout({
               </Sidebar>
             ) : (
               <Button onClick={toggleSidebar} className="bg-gray-700 text-white hover:bg-gray-600">
-                Open
+                <PanelLeft />
               </Button>
             )}
             <div className="flex-1 p-4">
