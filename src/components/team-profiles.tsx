@@ -1,3 +1,5 @@
+'use client';
+
 import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card';
 import {getAllSalesTeamMembers, SalesTeamMember} from '@/services/sales-data';
 import {useEffect, useState} from 'react';
