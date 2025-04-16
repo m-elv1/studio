@@ -37,7 +37,11 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}>
         <SidebarProvider>
           <div className="flex h-screen">
-            {sidebarOpen ? (
+            {!sidebarOpen ? (
+               <Button onClick={toggleSidebar} className="bg-gray-700 text-white hover:bg-gray-600">
+                <PanelLeft />
+              </Button>
+            ) : (
               <Sidebar className="bg-secondary text-foreground w-64 flex-shrink-0 border-r border-border">
                 <SidebarTrigger onClick={toggleSidebar} />
                 <SidebarContent>
@@ -78,10 +82,6 @@ export default function RootLayout({
                   </nav>
                 </SidebarContent>
               </Sidebar>
-            ) : (
-              <Button onClick={toggleSidebar} className="bg-gray-700 text-white hover:bg-gray-600">
-                <PanelLeft />
-              </Button>
             )}
             <div className="flex-1 p-4">
               {children}
