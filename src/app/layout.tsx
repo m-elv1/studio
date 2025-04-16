@@ -7,7 +7,7 @@ import Link from 'next/link';
 import {useState, useEffect} from 'react';
 import {Button} from '@/components/ui/button';
 import {usePathname} from 'next/navigation';
-import {PanelLeft, Home, User, List, BarChart2, MessageSquare, CreditCard, MapPin} from 'lucide-react';
+import {PanelLeft, Home, User, List, BarChart2, MessageSquare, CreditCard, MapPin, Maximize, Minimize} from 'lucide-react';
 import {cn} from '@/lib/utils';
 
 const roboto = Roboto({
@@ -77,7 +77,7 @@ export default function RootLayout({
                 onClick={() => setIsNavOpen(!isNavOpen)}
                 className="mb-4 p-2 bg-gray-300 rounded hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
               >
-                {isNavOpen ? 'Close' : 'Open'} Navigation
+                {isNavOpen ? <><Minimize className="inline-block mr-2 h-4 w-4" /> Minimize Navigation</> : <><Maximize className="inline-block mr-2 h-4 w-4" />Maximize Navigation</>}
               </Button>
 
               {/* Navigation Links */}
