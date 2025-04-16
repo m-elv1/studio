@@ -1,3 +1,4 @@
+
 'use client';
 
 import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card';
@@ -22,7 +23,7 @@ export function SalesDashboard() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <Card>
+      <Card className="bg-card rounded-lg shadow-md">
         <CardHeader>
           <CardTitle>Total Sales</CardTitle>
         </CardHeader>
@@ -31,7 +32,7 @@ export function SalesDashboard() {
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="bg-card rounded-lg shadow-md">
         <CardHeader>
           <CardTitle>Average Deal Size</CardTitle>
         </CardHeader>
@@ -40,7 +41,7 @@ export function SalesDashboard() {
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="bg-card rounded-lg shadow-md">
         <CardHeader>
           <CardTitle>Conversion Rate</CardTitle>
         </CardHeader>
@@ -51,4 +52,3 @@ export function SalesDashboard() {
     </div>
   );
 }
-

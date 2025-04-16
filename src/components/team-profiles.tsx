@@ -1,3 +1,4 @@
+
 'use client';
 
 import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card';
@@ -21,7 +22,7 @@ export function TeamProfiles() {
       <h2 className="text-2xl font-bold mb-4">Sales Team Profiles</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {teamMembers.map((member) => (
-          <Card key={member.id}>
+          <Card key={member.id} className="bg-card rounded-lg shadow-md">
             <CardHeader>
               <CardTitle>{member.name}</CardTitle>
             </CardHeader>
@@ -36,4 +37,3 @@ export function TeamProfiles() {
     </div>
   );
 }
-
