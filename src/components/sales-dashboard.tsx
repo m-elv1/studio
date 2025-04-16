@@ -21,31 +21,31 @@ export function SalesDashboard() {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <Card className="bg-card rounded-lg shadow-md">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <Card className="bg-white shadow-md rounded-lg">
         <CardHeader>
-          <CardTitle>Total Sales</CardTitle>
+          <CardTitle className="text-gray-700">Total Sales</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">${totalSales}</div>
+          <div className="text-2xl font-bold text-gray-900">${totalSales}</div>
         </CardContent>
       </Card>
 
-      <Card className="bg-card rounded-lg shadow-md">
+      <Card className="bg-white shadow-md rounded-lg">
         <CardHeader>
-          <CardTitle>Average Deal Size</CardTitle>
+          <CardTitle className="text-gray-700">Average Deal Size</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">${averageDealSize}</div>
+          <div className="text-2xl font-bold text-gray-900">${averageDealSize}</div>
         </CardContent>
       </Card>
 
-      <Card className="bg-card rounded-lg shadow-md">
+      <Card className="bg-white shadow-md rounded-lg">
         <CardHeader>
-          <CardTitle>Conversion Rate</CardTitle>
+          <CardTitle className="text-gray-700">Conversion Rate</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{(conversionRate * 100).toFixed(2)}%</div>
+          <div className="text-2xl font-bold text-gray-900">{(conversionRate * 100).toFixed(2)}%</div>
         </CardContent>
       </Card>
     </div>

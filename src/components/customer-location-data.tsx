@@ -134,32 +134,32 @@ export function CustomerLocationData() {
 
   return (
     <div>
-      {!hasGoogleMapsLoaded && <div>Loading Google Maps...</div>}
+      {!hasGoogleMapsLoaded && <div className="text-gray-600">Loading Google Maps...</div>}
       {hasGoogleMapsLoaded && (
-        <div>
+        <div className="space-y-4">
           <div>
-            <div ref={mapRef} style={{height: '400px', width: '100%'}}/>
+            <div ref={mapRef} style={{height: '400px', width: '100%', borderRadius: '0.5rem', boxShadow: '0 2px 4px rgba(0,0,0,0.1)'}}/>
           </div>
 
           <div>
-            <h3>Customer Locations:</h3>
+            <h3 className="text-lg font-semibold mb-2 text-gray-700">Customer Locations:</h3>
             <ul>
               {customerLocations.map((location, index) => (
-                <li key={index}>
+                <li key={index} className="text-gray-600">
                   {location.name} - Lat: {location.lat}, Lng: {location.lng}
                 </li>
               ))}
             </ul>
           </div>
 
-          <div>
+          <div className="flex items-center space-x-2">
             <Textarea
               placeholder="Enter location name..."
               value={newLocationName}
               onChange={handleLocationNameChange}
-              className="w-full mb-2"
+              className="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
             />
-            <Button onClick={handleAddLocation}>Add Location</Button>
+            <Button onClick={handleAddLocation} className="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700">Add Location</Button>
           </div>
         </div>
       )}

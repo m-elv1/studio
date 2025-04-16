@@ -102,14 +102,14 @@ export function ActivityLog() {
 
       <ul>
         {activities.map((activity) => (
-          <li key={activity.id} className="mb-2 p-4 border rounded-md">
-            <p>
+          <li key={activity.id} className="mb-2 p-4 border rounded-md bg-white shadow-sm">
+            <p className="text-gray-700">
               <strong>Date:</strong> {activity.date}
             </p>
-            <p>
+            <p className="text-gray-700">
               <strong>Type:</strong> {activity.type}
             </p>
-            <p>
+            <p className="text-gray-700">
               <strong>Description:</strong> {activity.description}
             </p>
           </li>

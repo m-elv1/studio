@@ -45,18 +45,18 @@ export function CustomerPaymentHistoryAnalysis() {
         />
       </div>
 
-      <Button onClick={handlePaymentHistoryAnalysis}>Analyze Payment History</Button>
+      <Button onClick={handlePaymentHistoryAnalysis} className="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700">Analyze Payment History</Button>
 
       {paymentHistoryAnalysis && (
-        <div className="mt-4 p-4 border rounded-md">
-          <h3>Payment History Analysis Results:</h3>
-          <p>
+        <div className="mt-4 p-4 border rounded-md bg-white shadow-sm">
+          <h3 className="text-lg font-semibold mb-2 text-gray-700">Payment History Analysis Results:</h3>
+          <p className="text-gray-600">
             <strong>Payment Behavior:</strong> {paymentHistoryAnalysis.paymentBehavior}
           </p>
-          <p>
+          <p className="text-gray-600">
             <strong>Potential Issues:</strong> {paymentHistoryAnalysis.potentialIssues}
           </p>
-          <p>
+          <p className="text-gray-600">
             <strong>Suggested Actions:</strong> {paymentHistoryAnalysis.suggestedActions}
           </p>
         </div>

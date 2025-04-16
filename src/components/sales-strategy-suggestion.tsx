@@ -54,12 +54,12 @@ export function SalesStrategySuggestion() {
         </Select>
       </div>
 
-      <Button onClick={handleStrategySuggestion}>Generate Sales Strategy</Button>
+      <Button onClick={handleStrategySuggestion} className="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700">Generate Sales Strategy</Button>
 
       {salesStrategy && (
-        <div className="mt-4 p-4 border rounded-md">
-          <h3>Suggested Sales Strategy:</h3>
-          <p>{salesStrategy}</p>
+        <div className="mt-4 p-4 border rounded-md bg-white shadow-sm">
+          <h3 className="text-lg font-semibold mb-2 text-gray-700">Suggested Sales Strategy:</h3>
+          <p className="text-gray-600">{salesStrategy}</p>
         </div>
       )}
     </div>

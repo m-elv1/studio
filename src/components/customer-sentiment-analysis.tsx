@@ -45,18 +45,18 @@ export function CustomerSentimentAnalysis() {
         />
       </div>
 
-      <Button onClick={handleSentimentAnalysis}>Analyze Sentiment</Button>
+      <Button onClick={handleSentimentAnalysis} className="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700">Analyze Sentiment</Button>
 
       {sentimentAnalysis && (
-        <div className="mt-4 p-4 border rounded-md">
-          <h3>Sentiment Analysis Results:</h3>
-          <p>
+        <div className="mt-4 p-4 border rounded-md bg-white shadow-sm">
+          <h3 className="text-lg font-semibold mb-2 text-gray-700">Sentiment Analysis Results:</h3>
+          <p className="text-gray-600">
             <strong>Overall Sentiment:</strong> {sentimentAnalysis.overallSentiment}
           </p>
-          <p>
+          <p className="text-gray-600">
             <strong>Key Phrases:</strong> {sentimentAnalysis.keyPhrases}
           </p>
-          <p>
+          <p className="text-gray-600">
             <strong>Suggested Actions:</strong> {sentimentAnalysis.suggestedActions}
           </p>
         </div>

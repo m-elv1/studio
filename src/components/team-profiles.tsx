@@ -19,13 +19,13 @@ export function TeamProfiles() {
   return (
     <div>
       <h2 className="text-2xl font-bold mb-4">Sales Team Profiles</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {teamMembers.map((member) => (
-          <Card key={member.id} className="bg-card rounded-lg shadow-md">
+          <Card key={member.id} className="bg-white shadow-md rounded-lg">
             <CardHeader>
-              <CardTitle>{member.name}</CardTitle>
+              <CardTitle className="text-gray-700">{member.name}</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="text-gray-600">
               <p>Email: {member.email}</p>
               <p>Phone: {member.phone}</p>
               <p>Bio: {member.bio}</p>

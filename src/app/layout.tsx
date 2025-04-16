@@ -1,9 +1,8 @@
 'use client';
 
 import type {Metadata} from 'next';
-import {Geist, Geist_Mono} from 'next/font/google';
+import {Roboto} from 'next/font/google';
 import './globals.css';
-import {Sidebar, SidebarContent, SidebarTrigger, SidebarProvider} from '@/components/ui/sidebar';
 import Link from 'next/link';
 import {useState, useEffect} from 'react';
 import {Button} from '@/components/ui/button';
@@ -11,14 +10,10 @@ import {usePathname} from 'next/navigation';
 import {PanelLeft, Home, User, List, BarChart2, MessageSquare, CreditCard, MapPin} from 'lucide-react';
 import {cn} from '@/lib/utils';
 
-const geistSans = Geist({
+const roboto = Roboto({
+  weight: ['400', '500', '700'],
   subsets: ['latin'],
-  variable: '--font-geist-sans',
-});
-
-const geistMono = Geist_Mono({
-  subsets: ['latin'],
-  variable: '--font-geist-mono',
+  display: 'swap',
 });
 
 export default function RootLayout({
@@ -26,7 +21,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [isNavOpen, setIsNavOpen] = useState(true);
   const pathname = usePathname();
     const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -57,89 +52,69 @@ export default function RootLayout({
         return `${hours}:${minutes} ${ampm}`;
     };
 
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
 
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}>
-        <SidebarProvider>
-          <div className="flex h-screen">
-            {!sidebarOpen ? (
-               <Button onClick={() => setSidebarOpen(true)} className="bg-gray-700 text-white hover:bg-gray-600">
-                <PanelLeft />
-              </Button>
-            ) : (
-              <Sidebar className="bg-gray-800 text-white w-64 flex-shrink-0 border-r border-gray-700">
-                <SidebarTrigger onClick={() => setSidebarOpen(false)} />
-                <SidebarContent>
-                   <div className="flex flex-col items-start space-y-2 p-4">
-                        <div className="text-2xl font-bold mb-2">
-                            {formatTime(currentTime)}
-                        </div>
-                        <div className="text-sm">
-                            {formatDate(currentTime)}
-                        </div>
-                        <Separator className="my-2 bg-gray-700" />
-                    </div>
-                  <nav className="flex flex-col items-start space-y-2 p-4">
-                    <Link href="/" className={cn("flex items-center space-x-2 py-2 hover:text-gray-300", pathname === '/' ? 'text-blue-500' : 'text-white')}>
-                      <Home className="h-4 w-4" />
-                      <span>Dashboard</span>
-                    </Link>
-                    <Link href="/team-profiles" className={cn("flex items-center space-x-2 py-2 hover:text-gray-300", pathname === '/team-profiles' ? 'text-blue-500' : 'text-white')}>
-                      <User className="h-4 w-4" />
-                      <span>Team Profiles</span>
-                    </Link>
-                    <Link href="/activity-log" className={cn("flex items-center space-x-2 py-2 hover:text-gray-300", pathname === '/activity-log' ? 'text-blue-500' : 'text-white')}>
-                      <List className="h-4 w-4" />
-                      <span>Activity Log</span>
-                    </Link>
-                    <Link
-                      href="/sales-strategy-suggestion"
-                      className={cn("flex items-center space-x-2 py-2 hover:text-gray-300", pathname === '/sales-strategy-suggestion' ? 'text-blue-500' : 'text-white')}
-                    >
-                      <BarChart2 className="h-4 w-4" />
-                      <span>Sales Strategy</span>
-                    </Link>
-                    <Link
-                      href="/customer-sentiment-analysis"
-                      className={cn("flex items-center space-x-2 py-2 hover:text-gray-300", pathname === '/customer-sentiment-analysis' ? 'text-blue-500' : 'text-white')}
-                    >
-                      <MessageSquare className="h-4 w-4" />
-                      <span>Customer Sentiment</span>
-                    </Link>
-                    <Link
-                      href="/customer-payment-history-analysis"
-                      className={cn("flex items-center space-x-2 py-2 hover:text-gray-300", pathname === '/customer-payment-history-analysis' ? 'text-blue-500' : 'text-white')}
-                    >
-                      <CreditCard className="h-4 w-4" />
-                      <span>Customer Payment</span>
-                    </Link>
-                     <Link
-                      href="/customer-location-data"
-                      className={cn("flex items-center space-x-2 py-2 hover:text-gray-300", pathname === '/customer-location-data' ? 'text-blue-500' : 'text-white')}
-                    >
-                      <MapPin className="h-4 w-4" />
-                      <span>Customer Location</span>
-                    </Link>
-                  </nav>
-                </SidebarContent>
-              </Sidebar>
-            )}
-            <div className="flex-1 p-4">
-              {children}
+    <html lang="en" className={roboto.className}>
+      <body className="bg-gray-50 text-gray-900 antialiased">
+        <div className="flex flex-col h-screen">
+          {/* Header */}
+          <header className="bg-white shadow-md py-4 px-6 flex justify-between items-center">
+            <div className="text-xl font-semibold">TradeFlow</div>
+            <div>
+              {formatTime(currentTime)} - {formatDate(currentTime)}
             </div>
+          </header>
+
+          <div className="flex flex-1">
+            {/* Navigation Section */}
+            <aside
+              className={`bg-gray-100 border-r border-gray-200 w-64 px-4 py-6 transition-transform duration-300 ease-in-out ${
+                isNavOpen ? 'translate-x-0' : '-translate-x-full'
+              }`}
+            >
+              {/* Toggle Button */}
+              <Button
+                onClick={() => setIsNavOpen(!isNavOpen)}
+                className="mb-4 p-2 bg-gray-300 rounded hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
+              >
+                {isNavOpen ? 'Close' : 'Open'} Navigation
+              </Button>
+
+              {/* Navigation Links */}
+              {isNavOpen && (
+                <nav className="flex flex-col space-y-2">
+                  <Link href="/" className={cn("block px-4 py-2 rounded hover:bg-gray-200", pathname === '/' ? 'font-semibold' : '')}>
+                    <Home className="inline-block mr-2 h-4 w-4" /> Dashboard
+                  </Link>
+                  <Link href="/team-profiles" className={cn("block px-4 py-2 rounded hover:bg-gray-200", pathname === '/team-profiles' ? 'font-semibold' : '')}>
+                    <User className="inline-block mr-2 h-4 w-4" /> Team Profiles
+                  </Link>
+                  <Link href="/activity-log" className={cn("block px-4 py-2 rounded hover:bg-gray-200", pathname === '/activity-log' ? 'font-semibold' : '')}>
+                    <List className="inline-block mr-2 h-4 w-4" /> Activity Log
+                  </Link>
+                  <Link href="/sales-strategy-suggestion" className={cn("block px-4 py-2 rounded hover:bg-gray-200", pathname === '/sales-strategy-suggestion' ? 'font-semibold' : '')}>
+                    <BarChart2 className="inline-block mr-2 h-4 w-4" /> Sales Strategy
+                  </Link>
+                  <Link href="/customer-sentiment-analysis" className={cn("block px-4 py-2 rounded hover:bg-gray-200", pathname === '/customer-sentiment-analysis' ? 'font-semibold' : '')}>
+                    <MessageSquare className="inline-block mr-2 h-4 w-4" /> Customer Sentiment
+                  </Link>
+                  <Link href="/customer-payment-history-analysis" className={cn("block px-4 py-2 rounded hover:bg-gray-200", pathname === '/customer-payment-history-analysis' ? 'font-semibold' : '')}>
+                    <CreditCard className="inline-block mr-2 h-4 w-4" /> Customer Payment
+                  </Link>
+                  <Link href="/customer-location-data" className={cn("block px-4 py-2 rounded hover:bg-gray-200", pathname === '/customer-location-data' ? 'font-semibold' : '')}>
+                    <MapPin className="inline-block mr-2 h-4 w-4" /> Customer Location
+                  </Link>
+                </nav>
+              )}
+            </aside>
+
+            {/* Main Content Area */}
+            <main className="flex-1 p-6">
+              {children}
+            </main>
           </div>
-        </SidebarProvider>
+        </div>
       </body>
     </html>
   );
-}
-
-function Separator({ className }: { className?: string }) {
-    return (
-        <div className={`border-b border-gray-700 w-full ${className}`} />
-    );
 }

@@ -2,8 +2,8 @@ import {CustomerPaymentHistoryAnalysis} from '@/components/customer-payment-hist
 
 export default function CustomerPaymentHistoryAnalysisPage() {
   return (
-    <main className="flex min-h-screen flex-col items-start justify-start p-12">
-      <h1 className="text-4xl font-bold mb-8">Customer Payment History Analysis</h1>
+    <main className="container mx-auto p-6">
+      <h1 className="text-3xl font-semibold mb-4">Customer Payment History Analysis</h1>
       <CustomerPaymentHistoryAnalysis />
     </main>
   );
