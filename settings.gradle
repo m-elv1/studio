@@ -1,1 +1,14 @@
-// Placeholder for settings.gradle
+// settings.gradle (Groovy syntax)
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+include ':core'
+include ':data'
+include ':domain'
+include ':features:firms'
+include ':features:auth'
+include ':auth'
